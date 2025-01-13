@@ -1,101 +1,68 @@
 import Image from "next/image";
+import { Roboto_Slab, Roboto, Poppins } from "next/font/google";
+import { Dot } from "lucide-react";
+import logo from "../public/lfc-logo.png";
+import Form from "@/components/Form";
+
+const roboto_slab = Roboto_Slab({ weight: ["800"], subsets: ["latin"] });
+const roboto = Roboto({ weight: ["400"], subsets: ["latin"] });
+const poppins = Poppins({ weight: ["400"], subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gray-50">
+      {/* hero section */}
+      <div className="flex gap-6 w-full items-center bg-gradient-to-r from-blue-600 to-blue-400 relative justify-center w-full h-[32rem] shadow-lg">
+        <div className="absolute inset-0 bg-black/10" /> {/* subtle overlay */}
+        <div className="relative flex items-center gap-8 z-10">
+          <Image 
+            src={logo} 
+            width={120} 
+            height={120} 
+            alt="LFC Kaduna" 
+            className="drop-shadow-md"
+          />
+          <span className="text-4xl relative flex flex-col items-center justify-center h-fit text-white">
+            <span className={`${roboto_slab.className} tracking-widest mb-3`}>
+              LIVING FAITH CHURCH, KADUNA.
+            </span>
+            <hr className="border-2 w-full border-white/80 mb-3" />
+            <span className={`${poppins.className} text-[28px]`}>
+              APPLICATION FORM FOR MEMBERSHIP OF ACTIVITY UNIT
+            </span>
+          </span>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* main selection section */}
+      <div className="max-w-6xl mx-auto py-12 px-4">
+        <p className={`${poppins.className} text-2xl font-bold text-center mb-8 text-gray-800`}>
+          SELECT THE UNIT YOU WOULD LIKE TO JOIN
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+          {[
+            "Teens Church Technical Crew",
+            "Hospitality Unit",
+            "Surveillance Unit",
+            "Ushering Unit",
+            "Crowd Control Unit",
+            "Decoration Unit"
+          ].map((unit, index) => (
+            <div 
+              key={index}
+              className="w-full py-3 px-6 flex items-center justify-between h-14 
+                border-2 border-blue-500 rounded-2xl bg-white hover:bg-blue-50
+                transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md"
+            >
+              <span className={`text-xl ${roboto.className} text-gray-700`}>
+                {unit}
+              </span>
+              <Dot size={40} className="text-blue-500" />
+            </div>
+          ))}
+        </div>
+      </div>
+      <Form />
     </div>
   );
 }
